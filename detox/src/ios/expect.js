@@ -64,6 +64,14 @@ class LongPressAction extends Action {
   }
 }
 
+class LongPressWithDurationAction extends Action {
+  constructor(value) {
+    super();
+    this._call = invoke.callDirectly(GreyActions.actionForLongPressWithDuration(value));
+  }
+}
+
+
 class MultiTapAction extends Action {
   constructor(value) {
     super();
@@ -274,6 +282,9 @@ class Element {
   }
   async longPress() {
     return await new ActionInteraction(this, new LongPressAction()).execute();
+  }
+  async longPressWithDuration(value) {
+    return await new ActionInteraction(this, new LongPressWithDurationAction(value)).execute();
   }
   async multiTap(value) {
     return await new ActionInteraction(this, new MultiTapAction(value)).execute();
